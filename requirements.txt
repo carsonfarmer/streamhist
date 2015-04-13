@@ -1,0 +1,5 @@
+--index-url https://pypi.python.org/simple/
+
+# This saves keeping two separate lists:
+# https://caremad.io/2013/07/setup-vs-requirement/
+-e .

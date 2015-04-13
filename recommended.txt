@@ -1,0 +1,4 @@
+# Examples and tests
+numpy
+matplotlib
+ipython[notebook]>=3.0.0
