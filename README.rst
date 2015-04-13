@@ -448,7 +448,7 @@ Sorted list
 
 The bin reservoir used to store the ``StreamHist`` bins is a sorted list
 as implemented in the
-```SortedContainers`` <https://github.com/grantjenks/sorted_containers>`__
+`SortedContainers <https://github.com/grantjenks/sorted_containers>`__
 library. There are many performance-related reasons for using this
 library, and `implementation
 details <http://www.grantjenks.com/docs/sortedcontainers/implementation.html>`__
@@ -461,10 +461,10 @@ Update speeds
 
 Currently, ``StreamHist`` has minimal dependencies. The only
 non-standard library dependency is
-```SortedContainers`` <https://github.com/grantjenks/sorted_containers>`__.
+`SortedContainers <https://github.com/grantjenks/sorted_containers>`__.
 This has been a concious design choice. However, in order to improve
 update speeds (and other bottlenecks), we are exploring other options,
-including the use of ```NumPy`` <http://www.numpy.org>`__, which
+including the use of `NumPy <http://www.numpy.org>`__, which
 provides fast, powerful array-like objects, useful linear algebra, and
 other features which may improve scalability and efficiency.
 
