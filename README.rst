@@ -43,6 +43,21 @@ setup script:
     cd streamhist
     python setup.py install
 
+Testing
+=======
+
+``streamhist`` comes with a relatively comprehensive range of tests,
+including unit tests and regression tests. To run the tests, you can use
+``py.test`` or ``nosetests``, which can both be installed via ``pip``
+using the ``recommended.txt`` file (note, this will also install
+``numpy``, ``matplotlib``, and ``IPython`` which are used for tests and
+examples):
+
+.. code:: bash
+
+    pip install -r recommended.txt
+    nosetests streamhist
+
 Features
 ========
 
@@ -178,7 +193,7 @@ whithin those bounds for plotting:
     plt.show()
 
 
-.. image:: docs/output_16_0.png
+.. image:: docs/output_17_0.png
 
 
 If we normalized the values (dividing by 200K), these lines approximate
@@ -204,7 +219,7 @@ and PDF directly:
     plt.show()
 
 
-.. image:: docs/output_18_0.png
+.. image:: docs/output_19_0.png
 
 
 Bin counts
@@ -303,7 +318,7 @@ with 8 bins and the blue line represents the PDF for the histogram with
     plt.show()
 
 
-.. image:: docs/output_28_0.png
+.. image:: docs/output_29_0.png
 
 
 Bin weighting
@@ -341,7 +356,7 @@ distribution's true curve.
     plt.show()
 
 
-.. image:: docs/output_31_0.png
+.. image:: docs/output_32_0.png
 
 
 Merging
@@ -391,7 +406,7 @@ the list) the original histograms:
     plt.show()
 
 
-.. image:: docs/output_35_0.png
+.. image:: docs/output_36_0.png
 
 
 Missing Values
@@ -448,7 +463,7 @@ Sorted list
 
 The bin reservoir used to store the ``StreamHist`` bins is a sorted list
 as implemented in the
-`SortedContainers <https://github.com/grantjenks/sorted_containers>`__
+```SortedContainers`` <https://github.com/grantjenks/sorted_containers>`__
 library. There are many performance-related reasons for using this
 library, and `implementation
 details <http://www.grantjenks.com/docs/sortedcontainers/implementation.html>`__
@@ -461,10 +476,10 @@ Update speeds
 
 Currently, ``StreamHist`` has minimal dependencies. The only
 non-standard library dependency is
-`SortedContainers <https://github.com/grantjenks/sorted_containers>`__.
+```SortedContainers`` <https://github.com/grantjenks/sorted_containers>`__.
 This has been a concious design choice. However, in order to improve
 update speeds (and other bottlenecks), we are exploring other options,
-including the use of `NumPy <http://www.numpy.org>`__, which
+including the use of ```NumPy`` <http://www.numpy.org>`__, which
 provides fast, powerful array-like objects, useful linear algebra, and
 other features which may improve scalability and efficiency.
 
@@ -516,7 +531,7 @@ quick visualization.
     plt.show()
 
 
-.. image:: docs/output_43_0.png
+.. image:: docs/output_44_0.png
 
 
 .. code:: python
@@ -550,7 +565,7 @@ quick visualization.
     3.3844293796	
     3.73903715013	
     4.09364492067	
-
+    
 
 
 License

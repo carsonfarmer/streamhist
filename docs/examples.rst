@@ -43,6 +43,21 @@ setup script:
     cd streamhist
     python setup.py install
 
+Testing
+=======
+
+``streamhist`` comes with a relatively comprehensive range of tests,
+including unit tests and regression tests. To run the tests, you can use
+``py.test`` or ``nosetests``, which can both be installed via ``pip``
+using the ``recommended.txt`` file (note, this will also install
+``numpy``, ``matplotlib``, and ``IPython`` which are used for tests and
+examples):
+
+.. code:: bash
+
+    pip install -r recommended.txt
+    nosetests streamhist
+
 Features
 ========
 
@@ -178,7 +193,7 @@ whithin those bounds for plotting:
     plt.show()
 
 
-.. image:: output_16_0.png
+.. image:: output_17_0.png
 
 
 If we normalized the values (dividing by 200K), these lines approximate
@@ -204,7 +219,7 @@ and PDF directly:
     plt.show()
 
 
-.. image:: output_18_0.png
+.. image:: output_19_0.png
 
 
 Bin counts
@@ -303,7 +318,7 @@ with 8 bins and the blue line represents the PDF for the histogram with
     plt.show()
 
 
-.. image:: output_28_0.png
+.. image:: output_29_0.png
 
 
 Bin weighting
@@ -341,7 +356,7 @@ distribution's true curve.
     plt.show()
 
 
-.. image:: output_31_0.png
+.. image:: output_32_0.png
 
 
 Merging
@@ -391,7 +406,7 @@ the list) the original histograms:
     plt.show()
 
 
-.. image:: output_35_0.png
+.. image:: output_36_0.png
 
 
 Missing Values
@@ -516,7 +531,7 @@ quick visualization.
     plt.show()
 
 
-.. image:: output_43_0.png
+.. image:: output_44_0.png
 
 
 .. code:: python
