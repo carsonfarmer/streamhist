@@ -36,14 +36,15 @@ References
 # Copyright © 2013, 2014, 2015 BigML
 # Licensed under the Apache License, Version 2.0
 
+from __future__ import absolute_import
 from __future__ import print_function
 
 import sys
 from bisect import bisect_left
 
 from sortedcontainers import SortedListWithKey
-from utils import (next_after, bin_diff, accumulate, linspace,
-                   iterator_types, argmin, bin_sums, roots)
+from .utils import (next_after, bin_diff, accumulate, linspace,
+                    iterator_types, argmin, bin_sums, roots)
 
 _all__ = ["StreamHist", "Bin"]
 
@@ -163,7 +164,7 @@ class StreamHist(object):
             return self.quantiles(0.5)[0]
         else:
             # Return the 'exact' median when possible
-            mid = (self.total)/2
+            mid = int(self.total/2)
             if self.total % 2 == 0:
                 return (self.bins[mid-1] + self.bins[mid]).value
             return self.bins[mid].value

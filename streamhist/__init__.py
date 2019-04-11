@@ -6,6 +6,8 @@
 # Copyright (C) 2014, Carson Farmer <carsonfarmer@gmail.com>
 # All rights reserved. MIT Licensed.
 
-from histogram import StreamHist
-from weighted_histogram import WeightedHist
-import utils
+from __future__ import absolute_import
+
+from .histogram import StreamHist
+from .weighted_histogram import WeightedHist
+from . import utils
