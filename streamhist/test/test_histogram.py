@@ -269,6 +269,24 @@ def test_sum():
     assert about(h.sum(0), points/2.0, points/50.0)
 
 
+def test_paper_example():
+    """Test Appendix A example from Ben-Haim paper."""
+    from numpy import allclose
+    h = StreamHist(maxbins=5)
+    h.update((23,19,10,16,36,2,9))
+    assert allclose(
+        [(bin.value, bin.count) for bin in h.bins],
+        [(2,1), (9.5,2), (17.5,2), (23,1), (36,1)])
+    h2 = StreamHist(maxbins=5)
+    h2.update((32,30,45))
+    h3 = h + h2
+    assert allclose(
+        [(bin.value, bin.count) for bin in h3.bins],
+        [(2,1), (9.5,2), (19.33,3), (32.67,3), (45,1)],
+        rtol=1e-3)
+    assert about(h3.sum(15), 3.275, 1e-3)
+
+
 def test_quantiles():
     points = 10000
     h = StreamHist()

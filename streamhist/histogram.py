@@ -347,29 +347,12 @@ class StreamHist(object):
             ss = 0.0  # Sum is zero!
         elif x >= self._max:
             ss = float(self.total)
-        elif x == self.bins[-1].value:
-            # Shortcut for when i == max bin (see Steps 3-6)
-            last = self.bins[-1]
-            ss = float(self.total) - (float(last.count) / 2.0)
-        # elif x <= self.bins[0].value:
-        #     # Shortcut for when i == min bin (see Steps 3-6)
-        #     first = self.bins[0]
-        #     ss = float(first.count) / 2.0
         else:
-            bin_i = self.floor(x)
-            if bin_i is None:
-                bin_i = Bin(value=self._min, count=0)
-            bin_i1 = self.higher(x)
-            if bin_i1 is None:
-                bin_i1 = Bin(value=self._max, count=0)
-            if bin_i.value == self._min:
-                prev_sum = self.bins[0].count / 2.0
-            else:
-                temp = bin_sums(self.bins, less=x)
-                if len(temp):
-                    prev_sum = sum(temp)
-                else:
-                    prev_sum = 0.0
+            i = self.bins.bisect_key_right(x) - 1  # rightmost bin lte x
+            bin_i = self.bins[i] if i >= 0 else Bin(self._min, 0)
+            bin_i1 = self.bins[i+1] if i+1 < len(self.bins) else Bin(self._max, 0)
+            prev_sum = sum(bin.count for bin in self.bins[:i])
+            prev_sum += bin_i.count / 2
             ss = _compute_sum(x, bin_i, bin_i1, prev_sum)
         return ss
 
