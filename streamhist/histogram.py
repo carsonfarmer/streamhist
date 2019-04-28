@@ -202,8 +202,9 @@ class StreamHist(object):
         """
         while len(self.bins) > self.maxbins:
             index = argmin(bin_diff(self.bins, self.weighted))
-            prv = self.bins.pop(index)
-            self.bins[index] += prv
+            bin = self.bins.pop(index)
+            bin += self.bins.pop(index)
+            self.bins.add(bin)
         return self
 
     def scale_down(self, exclude):
@@ -247,7 +248,7 @@ class StreamHist(object):
         for b in bins:
             count = b["count"]
             value = b["mean"]
-            hist.bins.append(Bin(value, count))
+            hist.bins.add(Bin(value, count))
         return hist
 
     def __len__(self):
