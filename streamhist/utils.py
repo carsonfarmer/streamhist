@@ -6,10 +6,13 @@ import sys as _sys
 from sys import platform as _platform
 from math import log, sqrt
 import types
-import collections
-from numbers import Number as numeric_types
 
-iterator_types = (types.GeneratorType, collections.Iterable)
+if _sys.version_info >= (3, 3):
+    from collections.abc import Iterable
+else:
+    from collections import Iterable
+
+iterator_types = (types.GeneratorType, Iterable)
 
 if _sys.version_info.major >= 3:
     _izip = zip
