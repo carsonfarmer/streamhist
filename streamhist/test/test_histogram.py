@@ -18,6 +18,7 @@ References
 
 import random
 import operator
+from builtins import range
 
 import pytest
 
@@ -393,7 +394,7 @@ def test_counts():
 def test_multi_merge():
     points = 100000
     data = make_uniform(points)
-    samples = [data[x:x+100] for x in xrange(0, len(data), 100)]
+    samples = [data[x:x+100] for x in range(0, len(data), 100)]
     hists = [StreamHist().update(s) for s in samples]
     h1 = sum(hists)
     h2 = StreamHist().update(data)
