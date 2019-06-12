@@ -1,4 +1,5 @@
 # Examples and tests
+pytest
 numpy
 matplotlib
 ipython[notebook]>=3.0.0
