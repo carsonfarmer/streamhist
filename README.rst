@@ -1,3 +1,4 @@
+**Note**: For an actively maintained alternative, see https://github.com/maki-nage/distogram
 
 Overview
 ========
