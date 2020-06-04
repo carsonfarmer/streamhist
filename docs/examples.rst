@@ -48,7 +48,7 @@ Testing
 
 ``streamhist`` comes with a relatively comprehensive range of tests,
 including unit tests and regression tests. To run the tests, you can use
-``py.test`` or ``nosetests``, which can both be installed via ``pip``
+``pytest``, which can be installed via ``pip``
 using the ``recommended.txt`` file (note, this will also install
 ``numpy``, ``matplotlib``, and ``IPython`` which are used for tests and
 examples):
@@ -56,7 +56,7 @@ examples):
 .. code:: bash
 
     pip install -r recommended.txt
-    nosetests streamhist
+    pytest streamhist
 
 Features
 ========
