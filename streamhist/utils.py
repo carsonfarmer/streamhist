@@ -34,7 +34,7 @@ except ImportError:
 
 _E = 2.718281828459045
 
-__all__ = ["next_after", "bin_sums", "argmin", "bin_diff", "accumulate"]
+__all__ = ["next_after", "argmin", "bin_diff", "accumulate"]
 
 if _platform == "linux" or _platform == "linux2":
     _libm = _ctypes.cdll.LoadLibrary('libm.so.6')
@@ -78,11 +78,6 @@ def argmin(array):
     # Turns out Python's min and max functions are super fast!
     # http://lemire.me/blog/archives/2008/12/17/fast-argmax-in-python/
     return array.index(min(array))
-
-
-def bin_sums(array, less=None):
-    return [(a.count + b.count)/2. for a, b in _izip(array[:-1], array[1:])
-            if less is None or b.value <= less]
 
 
 def linspace(start, stop, num):

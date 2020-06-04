@@ -21,6 +21,7 @@ import operator
 from builtins import range
 
 import pytest
+from pytest import approx
 
 from streamhist import StreamHist
 
@@ -302,6 +303,54 @@ def test_quantiles():
     assert about(a, -0.66, 0.05)
     assert about(b, 0.00, 0.05)
     assert about(c, 0.66, 0.05)
+
+
+def test_histogram_exact():
+    """A StreamHist which is not at capacity matches numpy statistics"""
+    max_bins = 50
+    points = [random.expovariate(1/5) for _ in range(max_bins)]
+    h = StreamHist(max_bins)
+    h.update(points)
+
+    q = [i / 100 for i in range(101)]
+    import numpy as np
+    assert h.quantiles(*q) == approx(np.quantile(points, q))
+    assert h.mean() == approx(np.mean(points))
+    assert h.var() == approx(np.var(points))
+    assert h.min() == min(points)
+    assert h.max() == max(points)
+    assert h.count() == max_bins
+
+
+@pytest.mark.parametrize("max_bins,num_points,expected_error", [
+    (50, 50, 1e-6),
+    (100, 150, 1.5),
+    (100, 1000, 1),
+    (250, 1000, .5),
+])
+def test_histogram_approx(max_bins, num_points, expected_error):
+    """Test accuracy of StreamHist over capacity, especially quantiles."""
+    points = [random.expovariate(1/5) for _ in range(num_points)]
+    h = StreamHist(max_bins)
+    h.update(points)
+
+    import numpy as np
+    q = [i / 100 for i in range(101)]
+    err_sum = 0  # avg percent error across samples
+    for p, b, b_np, b_np_min, b_np_max in zip(
+            q,
+            h.quantiles(*q),
+            np.quantile(points, q),
+            np.quantile(points, [0] * 7 + q),
+            np.quantile(points, q[7:] + [1] * 7)):
+        err_denom = b_np_max - b_np_min
+        err_sum += abs(b - b_np) / err_denom
+    assert err_sum <= expected_error
+    assert h.mean() == approx(np.mean(points))
+    assert h.var() == approx(np.var(points), rel=.05)
+    assert h.min() == min(points)
+    assert h.max() == max(points)
+    assert h.count() == num_points
 
 
 def test_density():
