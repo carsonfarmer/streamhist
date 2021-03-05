@@ -289,6 +289,19 @@ def test_paper_example():
     assert about(h3.sum(15), 3.275, 1e-3)
 
 
+def test_sum_first_half_of_first_bin():
+    # test sum at point between min and first bin value
+    # https://github.com/carsonfarmer/streamhist/issues/13
+    h = StreamHist(maxbins=5)
+    h.update((1, 2, 3, 4, 5, .5))
+    assert h.min() == 0.5
+    bin0 = h.bins[0]
+    assert bin0.value == 0.75
+    assert bin0.count == 2
+    assert h.sum(h.min()) == 0
+    assert h.sum((h.min() + bin0.value) / 2) == (.5 ** 2) * bin0.count / 2
+
+
 def test_quantiles():
     points = 10000
     h = StreamHist()

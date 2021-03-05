@@ -345,7 +345,7 @@ class StreamHist(object):
             i = self.bins.bisect_key_right(x) - 1  # rightmost bin lte x
             bin_i = self.bins[i] if i >= 0 else Bin(self._min, 0)
             bin_i1 = self.bins[i+1] if i+1 < len(self.bins) else Bin(self._max, 0)
-            prev_sum = sum(bin.count for bin in self.bins[:i])
+            prev_sum = sum(bin.count for bin in self.bins[:max(i, 0)])
             prev_sum += bin_i.count / 2
             ss = _compute_sum(x, bin_i, bin_i1, prev_sum)
         return ss
