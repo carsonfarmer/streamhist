@@ -1,5 +1,3 @@
-**Note**: For an actively maintained alternative, see https://github.com/maki-nage/distogram
-
 Overview
 ========
 
@@ -25,10 +23,14 @@ histograms in Go <https://github.com/VividCortex/gohistogram>`__.
 Installation
 ============
 
-``streamhist`` has not yet been uploaded to
-`PyPi <https://pypi.python.org/pypi>`__, as we are currently at the
-'pre-release' stage. Having said that you should be able to install it
-via ``pip`` directly from the GitHub repository with:
+``streamhist`` is `available on PyPI <https://pypi.org/project/streamhist/>`__.
+
+.. code:: bash
+
+    pip install streamhist
+
+You can also install the dev version via ``pip`` directly from the
+GitHub repository with:
 
 .. code:: bash
 
@@ -43,6 +45,12 @@ setup script:
     git clone https://github.com/carsonfarmer/streamhist.git
     cd streamhist
     python setup.py install
+
+Alternative
+===========
+
+For a more actively maintained alternative, see 
+https://github.com/maki-nage/distogram
 
 Testing
 =======
@@ -572,8 +580,15 @@ quick visualization.
 License
 =======
 
-| Copyright © 2015 Carson Farmer carsonfarmer@gmail.com
-| Copyright © 2013 VividCortex
-| All rights reserved. MIT Licensed.
-| Copyright © 2013 BigML
-| Licensed under the Apache License, Version 2.0
+Copyright © 2015 Carson Farmer carsonfarmer@gmail.com  
+Copyright © 2013 VividCortex  
+All rights reserved. MIT Licensed  
+Copyright © 2013 BigML  
+Licensed under the Apache License, Version 2.0
+
+Thanks
+======
+
+Thanks to `John Belmonte <https://github.com/belm0>`__ for major
+improvements in efficiency and accuracy of various histogram
+methods.
